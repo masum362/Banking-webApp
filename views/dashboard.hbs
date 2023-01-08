@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="../style.css">
+  
+</head>
+
+<body>
+  <!-- Sidebar Start -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/js/all.min.js"
+        integrity="sha512-rpLlll167T5LJHwp0waJCh3ZRf7pO6IT1+LZOhAyP6phAirwchClbTZV3iqL3BMrVxIYRbzGTpli4rfxsCK6Vw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2>MSP Bank Ltd.</h2>
+      <ul>
+        <li><a href="">Home <i class="fas fa-home"></i></a></li>
+               <li><a target="" href="../../withdraw"> Withdraw <i class="fa-regular fa-credit-card"></i></a>
+                </li>
+                <li><a target="" href="../deposit"> Deposit <i class="fa-solid fa-coins"></i></a></li>
+                <li><a href="../transection_history">Transaction History <i class="fas fa-history"></i></a></li>
+                <li><a href="../contact">Contact <i class="fa-regular fa-message"></i></a></li>
+                <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li>
+                <li><a target="" href="login">Log Out <i class="fas fa-sign-out"></i></a></li>
+      </ul>
+      <div class="social_media">
+        <a target="_blank" href="https://www.facebook.com/md.masum.ahmed.mk"><i class="fab fa-facebook-f"></i></a>
+        <a target="_blank" href="https://twitter.com/MASUMAH80939468"><i class="fab fa-twitter"></i></a>
+        <a  target="_blank" href="https://www.instagram.com/md.masum650/"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="main_content">
+      <div class="info">
+        <div class="main">
+          <h1 class="text-3xl font-bold text-center ">welcome to your dashboard!!</h1>
+          <main class="mx-auto">
+            <section class="dashboard">
+              <div class="d-flex flex-column gap-4 text-center">
+                <div id="deposit" class="bg-blue-400 mt-10 p-12 rounded">
+                  <h3 class="text-2xl">Total Deposit</h3>
+                  <h2 class=" text-4xl">$<span id="deposit-total">
+                    
+                    {{#data}}
+                   {{total_deposit}}
+                    {{/data}}
+
+
+                  </span></h2>
+                </div>
+                <div id="withdraw" class="bg-green-400 mt-10 p-8 rounded">
+                  <h3 class=" text-2xl">Total Withdraw</h3>
+                  <h2 class=" text-4xl">$<span id="withdraw-total">
+
+                    {{#data}}
+                   {{total_withdraw}}
+                    {{/data}}
+
+                  </span></h2>
+                </div>
+                <div id="Balance" class="bg-yellow-400 mt-10 p-8 rounded">
+                  <h3 class="text-white text-2xl">Balance</h3>
+                  <h2 class="text-white text-4xl">$<span id="balance-total">
+
+                    {{#data}}
+                   {{total_amount}}
+                    {{/data}}
+
+                  </span></h2>
+                </div>
+              </div>
+            </section>
+
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Sidebar End -->
+
+</body>
+
+</html>
