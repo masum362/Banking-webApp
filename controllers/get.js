@@ -120,8 +120,8 @@ exports.deposit_Amount=(req,res)=>{
 }
 
 exports.logout = (req,res) =>{
-    // req.cookies.jwt = '';
-    res.render('login');
+    res.cookie('jwt','',{maxAge:1});
+    console.log('res cookie',res.cookie);
+    res.redirect('login');
 }
-
 
