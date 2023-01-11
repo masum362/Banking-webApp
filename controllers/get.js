@@ -1,23 +1,27 @@
 const express = require('express');
 const con = require('../database/connection');
 
-exports.account=(req,res)=>{
-    res.render('account')
-}
+// exports.account=(req,res)=>{
+//     res.render('account')
+// }
 exports.contact=(req,res)=>{
     res.render('contact')
 }
 exports.dashboard=(req,res)=>{
-
-    const qry = 'SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) AS total_withdraw , SUM(deposit)-SUM(withdraw) AS total_amount FROM money'
+    const user_id = req.cookies.user_id;
+    const qry = `SELECT deposit AS deposit,withdraw AS withdraw,SUM(deposit) AS total_deposit , SUM(withdraw)
+     AS total_withdraw , SUM(deposit)-SUM(withdraw) 
+     AS total_amount FROM money where user_id =${user_id} `
     con.query(qry, (err, results) => {
         if(err){
           return console.log(err);
         }
+        // if(total_amount==0){
+        //     res.send('please deposit the amount')
+        // }
         else{
          return res.render('dashboard',{
             data: results
-
         })
     }
 
@@ -26,15 +30,18 @@ exports.dashboard=(req,res)=>{
     // res.render('dashboard')
 }
 exports.deposit=(req,res)=>{
-
-    const qry = 'SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) AS total_withdraw , SUM(deposit)-SUM(withdraw) AS total_amount FROM money'
+    const user_id = req.cookies.user_id;
+    const qry = `SELECT deposit,withdraw,SUM(deposit) AS total_deposit , 
+                SUM(withdraw) AS total_withdraw , 
+                SUM(deposit)-SUM(withdraw) AS total_amount FROM money where user_id =${user_id}`
     con.query(qry, (err, results) => {
         if(err){
           return console.log(err);
         }
         else{
+            const last_deposit = req.cookies
          return res.render('deposit',{
-            data: results
+            data: results,data2:last_deposit
 
         })
     }
@@ -50,30 +57,40 @@ exports.register=(req,res)=>{
     res.render('register')
 }
 exports.transection_history=(req,res)=>{
-    const qry = 'SELECT id,deposit,withdraw FROM money'
+    const user_id = req.cookies.user_id;
+    const qry = `SELECT deposit,withdraw FROM money where user_id = ${user_id} ORDER BY id DESC LIMIT 30  `
     con.query(qry, (err, results) => {
         if(err){
           return console.log(err);
         }
         else{
-         return res.render('transection_history',{
-            data: results
-
-        })
+        //  return res.render('transection_history',{
+        //     data: results
+            res.render('transection_history',{
+                data:results
+            })
+        // })
+        // console.log(results[0].withdraw)
+        // const deposit = 
     }
 
     })
     // res.render('transection_history')
 }
 exports.withdraw=(req,res)=>{
-    const qry = 'SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) AS total_withdraw , SUM(deposit)-SUM(withdraw) AS total_amount FROM money'
+    const user_id = req.cookies.user_id;
+    const qry = `SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) 
+                AS total_withdraw , SUM(deposit)-SUM(withdraw)
+                AS total_amount FROM money where user_id =${user_id}`
     con.query(qry, (err, results) => {
         if(err){
           return console.log(err);
         }
         else{
+            const withdrawCookie = req.cookies;
+            // console.log
          return res.render('withdraw',{
-            data: results
+            data: results,data2: withdrawCookie
 
         })
     }
@@ -82,28 +99,34 @@ exports.withdraw=(req,res)=>{
     // res.render('withdraw')
 }
 
-exports.withdraw_amount=(req,res)=>{
+// exports.withdraw_success=(req,res)=>{
+//     const user_id = req.cookies.user_id;
 
-    const qry = 'SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) AS total_withdraw , SUM(deposit)-SUM(withdraw) AS total_amount FROM money'
-    con.query(qry, (err, results) => {
-        if(err){
-          return console.log(err);
-        }
-        else{
-         return res.render('withdraw',{
-            data: results
+//     res.render('withdraw_success')
+//     // const qry = `SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) 
+//     //             AS total_withdraw , SUM(deposit)-SUM(withdraw) 
+//     //             AS total_amount FROM money where user_id=${user_id}`
+//     // con.query(qry, (err, results) => {
+//     //     if(err){
+//     //       return console.log(err);
+//     //     }
+//     //     else{
+//     //      return res.render('withdraw',{
+//     //         data: results
 
-        })
-    }
+//     //     })
+//     // }
 
-    })
+//     // })
 
-    // res.render('withdraw')
-}
+//     // res.render('withdraw')
+// }
 
-exports.deposit_Amount=(req,res)=>{
-
-    const qry = 'SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) AS total_withdraw , SUM(deposit)-SUM(withdraw) AS total_amount FROM money'
+exports.deposit_Amount=(req,res)=>{    
+    const user_id = req.cookies.user_id;
+    const qry =`SELECT deposit,withdraw,SUM(deposit) AS total_deposit , SUM(withdraw) 
+                AS total_withdraw , SUM(deposit)-SUM(withdraw) 
+                AS total_amount FROM money where user_id = ${user_id} `
     con.query(qry, (err, results) => {
         if(err){
           return console.log(err);
@@ -121,7 +144,15 @@ exports.deposit_Amount=(req,res)=>{
 
 exports.logout = (req,res) =>{
     res.cookie('jwt','',{maxAge:1});
-    console.log('res cookie',res.cookie);
+    res.cookie('email','',{maxAge:1});
+    res.cookie('last_withdraw','',{maxAge:1});
+    res.cookie('last_deposit','',{maxAge:1});
+    res.cookie('user_id','',{maxAge:1});
+
+    // console.log('res cookie',res.cookie);
     res.redirect('login');
 }
 
+exports.home= (req,res)=>{
+    res.render('login');
+}

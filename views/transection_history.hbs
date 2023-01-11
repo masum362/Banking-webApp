@@ -24,13 +24,13 @@
     <div class="sidebar">
       <h2>MSP Bank Ltd.</h2>
       <ul>
-        <li><a href="../dashboard">Home <i class="fas fa-home"></i></a></li>
+        <li><a href="../dashboard">Dashboard <i class="fa-solid fa-chart-line"></i></a></li>
         <li><a target="" href="../withdraw"> Withdraw <i class="fa-regular fa-credit-card"></i></a>
         </li>
         <li><a target="" href="../deposit"> Deposit <i class="fa-solid fa-coins"></i></a></li>
         <li><a href="">Transaction History <i class="fas fa-history"></i></a></li>
         <li><a href="../contact">Contact <i class="fa-regular fa-message"></i></a></li>
-        <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li>
+        {{!-- <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li> --}}
         <li><a target="" href="logout">Log Out <i class="fas fa-sign-out"></i></a></li>
       </ul>
       <div class="social_media">
@@ -43,21 +43,27 @@
       <div class="info">
         <div class="main">
 
-          <table class="table table-striped">
-            <thead>
+          <table class=" text-center table table-striped">
+            <thead class="">
               <tr>
-                <th>Serial No.</th>
-                <th>Deposit</th>
-                <th>Withdraw</th>
+                <th class="text-center">Serial No.</th>
+                <th class="text-center">Deposit</th>
+                <th class="text-center">Withdraw</th>
               </tr>
             </thead>
             <tbody>
               {{#data}}
+
               <tr>
-                <th>{{id}}</th>
+                <td>
+                  <ol type="1"></ol>
+                  <li></li>
+                  </ol>
+                </td>
                 <td>{{deposit}}</td>
                 <td>{{withdraw}}</td>
               </tr>
+
               {{/data}}
             </tbody>
           </table>

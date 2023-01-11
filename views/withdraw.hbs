@@ -21,13 +21,13 @@
         <div class="sidebar">
             <h2>MSP Bank Ltd.</h2>
             <ul>
-                <li><a href="../dashboard">Home <i class="fas fa-home"></i></a></li>
+                <li><a href="../dashboard">Dashboard <i class="fa-solid fa-chart-line"></i></a></li>
                 <li><a target="" href=""> Withdraw <i class="fa-regular fa-credit-card"></i></a>
                 </li>
                 <li><a target="" href="../deposit"> Deposit <i class="fa-solid fa-coins"></i></a></li>
                 <li><a href="../transection_history">Transaction History <i class="fas fa-history"></i></a></li>
                 <li><a href="contact">Contact <i class="fa-regular fa-message"></i></a></li>
-                <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li>
+                {{!-- <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li> --}}
                 <li><a target="" href="logout">Log Out <i class="fas fa-sign-out"></i></a></li>
             </ul>
             <div class="social_media">
@@ -88,11 +88,8 @@
                             <div class="grid grid-cols-2 gap-4 text-center">
                                 <div id="withdraw" class="bg-green-400 mt-10 p-8 rounded">
                                     <h3 class=" text-2xl">Last Withdrawal Amount</h3>
-                                    <h2 class=" text-4xl">$<span id="withdraw-total">
-                                        {{#data}}
-                                        {{withdraw}}
-                                        {{/data}}
-
+                                    <h2 class=" text-4xl">$<span id="last_Withdraw">
+                                        {{#data2}}{{last_withdraw}}{{/data2}}
                                     </span></h2>
                                 </div>
                                 <div id="Balance" class="bg-yellow-400 mt-10 p-8 rounded">
@@ -123,6 +120,7 @@
     </div>
     <!-- Sidebar End -->
 
+<script type="text/javascript" src="js/withdraw.js"> </script>
 
 </body>
 

@@ -21,13 +21,13 @@
         <div class="sidebar">
             <h2>MSP Bank Ltd.</h2>
             <ul>
-                <li><a href="../dashboard">Home <i class="fas fa-home"></i></a></li>
+                <li><a href="../dashboard">Dashboard <i class="fa-solid fa-chart-line"></i></i></a></li>
                <li><a target="" href="../withdraw"> Withdraw <i class="fa-regular fa-credit-card"></i></a>
                 </li>
                <li><a target="" href=""> Deposit <i class="fa-solid fa-coins"></i></a></li>
                 <li><a href="../transection_history">Transaction History <i class="fas fa-history"></i></a></li>
                 <li><a href="../contact">Contact <i class="fa-regular fa-message"></i></a></li>
-                <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li>
+                {{!-- <li><a href="../account">Account <i class="fa-regular fa-address-card"></i></a></li> --}}
                 <li><a target="" href="logout">Log Out <i class="fas fa-sign-out"></i></a></li>li>
             </ul>
             <div class="social_media">
@@ -75,9 +75,9 @@
                                 <div id="deposit" class="bg-blue-400 mt-10 p-12 rounded">
                                     <h3 class=" text-2xl">Last Deposited Amount</h3>
                                     <h2 class=" text-4xl">$<span id="deposit-total">
-                                        {{#data}}
-                                        {{deposit}}
-                                        {{/data}}
+                                        {{#data2}}
+                                        {{last_deposit}}
+                                        {{/data2}}
                                     </span></h2>
                                 </div>
                                 <div id="Balance" class="bg-yellow-400 mt-10 p-8 rounded">
